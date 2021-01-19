@@ -26,9 +26,9 @@ const LoadMoreButton = styled.button`
     }
 `;
 
-const Button = ({setNextPage}) => {
+const Button = ({searchNexPage}) => {
     return (
-        <LoadMoreButton type="button" onClick={setNextPage}>
+        <LoadMoreButton type="button" onClick={searchNexPage}>
             Load more
         </LoadMoreButton>
     );
