@@ -26,19 +26,15 @@ const ImageFinder = () => {
     });
 
     const setModalImgUrl = url => {
-        setState({...state, modalImgUrl: url});
+        setState(prevState => ({...prevState, modalImgUrl: url}));
     };
 
     const searchNexPage = () => {
-        setState({...state, isLoading: true});
+        setState(prevState => ({...prevState, isLoading: true}));
         state.page = state.page + 1;
         findPictures(state.searchValue, state.page)
             .then(finded => {
-                setState({
-                    ...state,
-                    images: [...state.images, ...finded],
-                    isLoading: false,
-                });
+                setState(prevState => ({...prevState, images: [...prevState.images, ...finded], isLoading: false}));
             })
             .finally(() => {
                 window.scrollTo({
@@ -52,11 +48,11 @@ const ImageFinder = () => {
         if (state.searchValue !== value) {
             state.searchValue = value;
             findPictures(state.searchValue).then(finded => {
-                setState({
-                    ...state,
+                setState(prevState => ({
+                    ...prevState,
                     images: [...finded],
                     page: 1,
-                });
+                }));
             });
         }
     };
